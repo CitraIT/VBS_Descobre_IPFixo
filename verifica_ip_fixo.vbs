@@ -24,18 +24,21 @@ ComputerName	= objShell.ExpandEnvironmentStrings("%COMPUTERNAME%")
 
 ' Consultando o WMI para listar as placas de rede
 Set wmiServices = GetObject("winmgmts:\\.\root\cimv2")
-Set objResult = wmiServices.ExecQuery("Select * From Win32_NetworkAdapterConfiguration Where IPEnabled = TRUE AND DHCPEnabled = FALSE")
+Set objResult = wmiServices.ExecQuery("Select * From Win32_NetworkAdapterConfiguration Where IPEnabled = TRUE")
 DHCPEnabled = True
 IPAddr = ""
 
+
 ' Verificando a configuração de cada placa de rede encontrada
 If objResult.Count > 0 Then
-	DHCPEnabled = False
 	For Each obj in objResult
+		If obj.DHCPEnabled = False Then
+			DHCPEnabled = False
+		End If
 		For Each ip in obj.IPAddress
 			' Excluir endereços IPv6 link-local
 			If InStr(ip, "fe80") <> 1 Then
-				IPAddr = IPAddr & " " & ip
+				IPAddr = ip
 			End If
 		Next
 	Next
