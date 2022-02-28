@@ -3,7 +3,7 @@ Script para identificar máquinas com IP fixo na rede
 
 
 1) Crie uma pasta compartilhada com duas subpastas: scripts e arquivos.
-2) Cole os dois scripts dentro da pasta scripts, e dê permissão de somente leitura para todos os usuários.
+2) Cole os dois scripts dentro da pasta scripts, e dê permissão de somente leitura nesta pasta para todos os usuários.
 3) Edite os scripts e cole os respectivos caminhos de rede destas pastas, como no exemplo (yt video).
 4) Crie uma política de grupo, nas configurações de usuário, preferências, adicione uma tarefa agendada do tipo Imediata (at least windows 7).
 5) Na ação da tarefa agendada, no campo programa insira cscript.exe, no argumento cole o caminho do script descobre_ip_fixo.vbs (exemplo: \\servidor\pasta\scripts\descobre_ip_fixo.vbs).
